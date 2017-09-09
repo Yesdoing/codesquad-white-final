@@ -45,4 +45,24 @@ public class UserController {
 		model.addAttribute("user", userRepository.findByUserId(userId));
 		return "user/profile";
 	}
+	
+	@GetMapping("/{id}/form")
+	public String updateForm(@PathVariable("id") Long index, Model model) {
+		model.addAttribute("user", userRepository.findOne(index));
+		return "user/updateForm";
+	}
+	
+	@PostMapping("/{id}/update")
+	public String update(User user) {
+		User tempUser = userRepository.findOne(user.getId());
+		if(tempUser == null) {
+			return "redirect:/users";
+		}
+		
+		if(tempUser.getPassword().equals(user.getPassword())) {
+			userRepository.save(user);			
+		}
+		
+		return "redirect:/users";
+	}
 }
