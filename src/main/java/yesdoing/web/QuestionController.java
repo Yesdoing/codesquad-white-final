@@ -38,7 +38,7 @@ public class QuestionController {
 	@PostMapping("")
 	public String create(Question question, HttpSession session) {
 		User user = (User)session.getAttribute("sessionedUser");
-		question.setWriter(user.getName());
+		question.setWriter(user);
 		questionRepository.save(question);
 		return "redirect:/";
 	}
@@ -68,7 +68,7 @@ public class QuestionController {
 	@PostMapping("/{id}/form")
 	public String update(Question question, HttpSession session) {
 		User user = (User)session.getAttribute("sessionedUser");
-		question.setWriter(user.getName());
+		question.setWriter(user);
 		questionRepository.save(question);
 		return "redirect:/";
 	}

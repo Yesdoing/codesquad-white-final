@@ -2,16 +2,21 @@ package yesdoing.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Question {
 	@Id
 	@GeneratedValue
 	private Long id;
-	@Column(nullable=false, length=20)
-	private String writer;
+	
+	@ManyToOne
+	@JoinColumn(foreignKey=@ForeignKey(name = "fk_question_writer"))
+	private User writer;
 	@Column(nullable=false, length=100)
 	private String title;
 	@Column(nullable=false, length=500)
@@ -20,27 +25,20 @@ public class Question {
 	public Question() {
 	}
 
-	public Question(Long id, String writer, String title, String contents) {
-		super();
-		this.id = id;
-		this.writer = writer;
-		this.title = title;
-		this.contents = contents;
-	}
-
 	public Long getId() {
 		return id;
 	}
 	
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public String getWriter() {
+	public User getWriter() {
 		return writer;
 	}
 
-	public void setWriter(String writer) {
+	public void setWriter(User writer) {
 		this.writer = writer;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getTitle() {

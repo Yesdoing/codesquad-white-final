@@ -134,8 +134,8 @@ public class User {
 		return true;
 	}
 
-	public boolean isSameWriter(String writer) {
-		return this.name.equals(writer);
+	public boolean isSameWriter(User writer) {
+		return this.name.equals(writer.getName());
 	}
 	
 }
