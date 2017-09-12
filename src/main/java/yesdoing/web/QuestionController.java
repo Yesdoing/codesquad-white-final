@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import yesdoing.domain.Question;
@@ -65,7 +66,7 @@ public class QuestionController {
 		return "qna/updateForm";
 	}
 	
-	@PostMapping("/{id}/form")
+	@PutMapping("/{id}/form")
 	public String update(Question question, HttpSession session) {
 		User user = (User)session.getAttribute("sessionedUser");
 		question.setWriter(user);
